@@ -24,15 +24,10 @@ class TestLifoQueueJqwik {
         queue -> {
           final var sizeBefore = queue.size();
           final var accepted = queue.offer(element);
-          assertTrue(
-            // !accepted
-            false
-            || !queue.isEmpty() 
-              && queue.size() == sizeBefore + 1
-              && element.equals(queue.peek())
-          );
-        //   assertFalse(queue.isEmpty());
-        //   assertEquals(sizeBefore + 1, queue.size());
+          assertTrue(accepted);
+          assertFalse(queue.isEmpty());
+          assertEquals(sizeBefore + 1, queue.size());
+          assertTrue(element.equals(queue.peek()));
         }
       ));
     }
@@ -45,12 +40,8 @@ class TestLifoQueueJqwik {
         final var peekBefore = queue.peek();
         final var sizeBefore = queue.size();
         final var polled = queue.poll();
-        assertTrue(
-          // polled == null
-          false
-          || polled.equals(peekBefore)
-            && queue.size() == sizeBefore - 1
-        );
+        assertEquals(peekBefore, polled);
+        assertEquals(sizeBefore - 1, queue.size());
       });
   }
 
