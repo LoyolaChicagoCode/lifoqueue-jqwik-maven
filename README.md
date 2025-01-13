@@ -8,7 +8,7 @@ This project provides an example of stateful unit testing with and without [jqwi
 
 You can run the tests using
 
-    sbt test
+    mvn test
 
 ## References
 
