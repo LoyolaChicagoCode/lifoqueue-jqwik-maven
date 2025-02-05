@@ -33,7 +33,7 @@ class TestLifoQueueJqwik {
     }
   }
 
-  private Action<Queue<String>> poll() {
+  private Action<Queue<String>> pollAction() {
     return Action.<Queue<String>>when(queue -> !queue.isEmpty())
       .describeAs("poll")
       .justMutate(queue -> {
@@ -55,6 +55,6 @@ class TestLifoQueueJqwik {
     return ActionChain
       .<Queue<String>>startWith(() -> Collections.asLifoQueue(new LinkedList<>()))
       .withAction(new OfferAction())
-      .withAction(poll());
+      .withAction(pollAction());
   }
 }
